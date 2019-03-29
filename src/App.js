@@ -11,6 +11,7 @@ class App extends Component {
 
     this.state = {
       products: [],
+      editingId: null
     }
   }
 
@@ -32,18 +33,55 @@ class App extends Component {
     })
   }
 
+  deleteProduct = (id) => {
+    Axios.delete(`/api/product/${id}`).then(res => {
+      this.getAllProducts()
+    })
+  }
+
+  updateProduct = (name, price, img, id) => {
+    console.log('finder', id);
+    
+    Axios.put(`/api/product/${id}`, {name, price, img}).then(res => {
+      this.getAllProducts()
+    })
+  }
+
+  updateEditingId = (id) => {
+    this.setState({
+      editingId: id
+    })
+  }
+
+  resetEditingId = () => {
+    this.setState({
+      editingId: null
+    })
+  }
 
 
   render() {
+    console.log('finder11',this.state.editingId);
+    
     return (
       <div className="App">
         <header>
           <Header/>
         </header>
         <section>
-          <Form addProduct={this.addProduct}/>
+          <Form 
+          addProduct={this.addProduct}
+          editingId={this.state.editingId}
+          resetEditingId={this.resetEditingId}
+          updateProduct={this.updateProduct}
+
+          />
         </section>
-        <Dashboard products={this.state.products}/>
+        <Dashboard 
+        products={this.state.products}
+        deleteProduct={this.deleteProduct}
+        updateEditingId={this.updateEditingId}
+        />
 
       </div>
     );

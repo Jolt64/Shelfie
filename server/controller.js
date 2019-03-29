@@ -14,9 +14,8 @@ module.exports = {
         const { name, price, img } = req.body
         req.app.get('db')
         .createProduct([name,price,img])
-        .then((products) => {
-            res.status(200).send(products)
-        }).catch(err => {res.status(500).send({errorMessage:"There has been a problem. our engineers are working on it"})
+        .then(res.status(200).send(`Product has been added`))
+        .catch(err => {res.status(500).send({errorMessage:"There has been a problem. our engineers are working on it"})
         console.log(`problem with ${err}`)})
     },
 
@@ -27,6 +26,15 @@ module.exports = {
         .then(res.status(200).send(`Product ${id} is gone`))
         .catch(err => {res.status(500).send({errorMessage:"There has been a problem. our engineers are working on it"})
         console.log(`problem with ${err}`)})
+    },
+
+    updateProduct: (req, res) => {
+        const { id } = req.params
+        const { name, price, img } = req.body
+        req.app.get('db')
+        .updateProduct([name, +price, img, id])
+        .then(res.status(200).send(`Product ${id} has been updated`))
+        .catch(err => console.log(`problem with ${err}`))
     }
 
 }

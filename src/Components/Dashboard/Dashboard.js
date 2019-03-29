@@ -14,7 +14,13 @@ class Dashdoard extends Component {
         <div>Dashdoard</div>
         <div>
           {this.props.products.map(item => {
-            return <Product item={item} key={item.id} />;
+            return (
+            <Product 
+            item={item} 
+            key={item.id}
+            deleteProduct={this.props.deleteProduct} 
+            updateEditingId={this.props.updateEditingId}
+            />);
           })}
         </div>
       </div>

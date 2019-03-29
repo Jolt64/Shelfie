@@ -16,5 +16,6 @@ massive(CONNECTION_STRING).then(db => {
 app.get('/api/products', CF.getAllProducts);
 app.post('/api/product', CF.createProduct);
 app.delete('/api/product/:id', CF.deleteProduct);
+app.put('/api/product/:id', CF.updateProduct)
 
 app.listen(SERVER_PORT, () => console.log(`${SERVER_PORT} Grand Slams`))

@@ -25,6 +25,7 @@ class Form extends Component {
       price: "",
       img: ""
     });
+    this.props.resetEditingId()
   };
 
   newProductHandler = () => {
@@ -33,10 +34,21 @@ class Form extends Component {
     this.clearInputsHandler();
   };
 
+  updateProductHandler = () => {
+    const { name, price, img } = this.state;
+    const { id } = this.props.editingId;
+    console.log(this.props.editingId);
+    this.props.updateProduct(name, price, img, id);
+  }
+
   render() {
       let imgHolder = 'http://chittagongit.com//images/no-profile-pic-icon/no-profile-pic-icon-5.jpg'
       if(this.state.img){
           imgHolder = this.state.img
+      }
+      let editHolder = <button onClick={this.newProductHandler}>Add</button>
+      if(this.props.editingId) {
+          editHolder = <button onClick={this.updateProductHandler}>Update</button>
       }
     return (
       <div className="App">
@@ -60,7 +72,7 @@ class Form extends Component {
           placeholder="Image"
           onChange={e => this.inputChangeHandler(e, "img")}
         />
-        <button onClick={this.newProductHandler}>Add</button>
+        {editHolder}
         <button onClick={this.clearInputsHandler}>Cancel</button>
       </div>
     );
