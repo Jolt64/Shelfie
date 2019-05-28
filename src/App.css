@@ -2,12 +2,15 @@
   text-align: center;
 }
 
-/* header{
-  position: fixed;
-
+link {
+  display: block;
 }
 
-section{
-  position: fixed;
-  right: 5000;
-} */
+
+/* Box model */
+.wrapper{
+  margin: 10px;
+  border: solid black 2px;
+  padding: 10px;
+  box-sizing: border-box;
+}
