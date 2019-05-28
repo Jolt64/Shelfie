@@ -68,6 +68,8 @@ class App extends Component {
         <header>
           <Header/>
         </header>
+          <thisIsACustomTag>Rendering in a custom tag</thisIsACustomTag>
+          <div>Rendering in a built in tag</div>
         <section>
           <Form 
           addProduct={this.addProduct}
@@ -82,6 +84,12 @@ class App extends Component {
         deleteProduct={this.deleteProduct}
         updateEditingId={this.updateEditingId}
         />
+        {/* FlexBox */}
+        <div className="boxFlexed">
+          <div className="box"></div>
+          <div className="box"></div>
+          <div className="box"></div>
+        </div>
 
       </div>
     );
