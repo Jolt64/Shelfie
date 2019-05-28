@@ -76,7 +76,6 @@ class App extends Component {
           editingId={this.state.editingId}
           resetEditingId={this.resetEditingId}
           updateProduct={this.updateProduct}
-
           />
         </section>
         <Dashboard 
